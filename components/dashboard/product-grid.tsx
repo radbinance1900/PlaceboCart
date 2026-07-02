@@ -112,21 +112,21 @@ export default function ProductGrid() {
                 <button
                   onClick={() => handleAddToCart(product)}
                   disabled={!product.inStock}
-                  className={`flex-1 py-3 px-2 bg-white border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1 whitespace-nowrap ${
+                  className={`flex-1 min-w-0 py-3 px-3 bg-white border-2 border-black font-black text-xs leading-tight uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center gap-0.5 ${
                     !product.inStock ? 'cursor-not-allowed opacity-50' : ''
                   }`}
                 >
-                  <ShoppingCart className="w-3 h-3 flex-shrink-0" />
-                  <span>Add</span>
+                  <ShoppingCart className="w-4 h-4 flex-shrink-0" />
+                  <span>Add to Cart</span>
                 </button>
                 <button
                   onClick={() => handleBuyNow(product)}
                   disabled={!product.inStock}
-                  className={`flex-1 py-3 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap ${
+                  className={`flex-1 min-w-0 py-3 px-3 bg-[#1A4454] border-2 border-black font-black text-xs leading-tight uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] ${
                     !product.inStock ? 'cursor-not-allowed opacity-50' : ''
                   }`}
                 >
-                  Buy
+                  Buy Now
                 </button>
               </div>
             </div>
