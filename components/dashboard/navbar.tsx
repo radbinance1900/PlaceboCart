@@ -5,9 +5,39 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/cart-context'
 import { searchProducts } from '@/lib/products'
+import { useRouter } from 'next/navigation'
+
+const productEmojis: { [key: string]: string } = {
+  'iPhone 16 Pro Max': '📱',
+  'MacBook Pro M4': '💻',
+  'AirPods Pro Max': '🎧',
+  'iPad Pro 12.9"': '📱',
+  'Apple Watch Ultra': '⌚',
+  'PlayStation 5': '🎮',
+  'DJI Air 3S Drone': '🚁',
+  'Meta Quest 3': '🥽',
+  'Nintendo Switch Pro': '🎮',
+  'Sony WH-1000XM5': '🎧',
+  'Rolex Submariner': '⌚',
+  'Omega Speedmaster': '⌚',
+  'Gucci GG Marmont Bag': '👜',
+  'Louis Vuitton Monogram': '👜',
+  'Hermès Silk Scarf': '🧣',
+  'Balenciaga Track Sneakers': '👟',
+  'Yeezy 350 Boost': '👟',
+  'Prada Nylon Backpack': '🎒',
+  'Off-White Virgil Hoodie': '👕',
+  'Supreme Box Logo Tee': '👕',
+  'Air Jordan 1 Retro High': '👟',
+  'Nike Air Max 90': '👟',
+  'Adidas Yeezy Foam Runner': '👟',
+  'New Balance 990v6': '👟',
+  'Puma RS-X Reinvention': '👟',
+}
 
 export default function DashboardNavbar() {
-  const { cartCount } = useCart()
+  const { cartCount, addToCart } = useCart()
+  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<any[] | null>(null)
   const [showNoResults, setShowNoResults] = useState(false)
@@ -24,10 +54,29 @@ export default function DashboardNavbar() {
     setShowNoResults(results.length === 0)
   }
 
-  const handleResultClick = (product: any) => {
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      originalPrice: product.originalPrice,
+      image: productEmojis[product.title] || '📦',
+    })
     setSearchQuery('')
     setSearchResults(null)
     setShowNoResults(false)
+  }
+
+  const handleBuyNow = (product: any) => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      originalPrice: product.originalPrice,
+      image: productEmojis[product.title] || '📦',
+    })
+    setSearchQuery('')
+    setSearchResults(null)
+    setShowNoResults(false)
+    router.push('/checkout')
   }
 
   return (
@@ -61,14 +110,37 @@ export default function DashboardNavbar() {
                       {searchResults.map((result) => (
                         <li
                           key={result.id}
-                          onClick={() => handleResultClick(result)}
-                          className="px-4 py-3 border-b border-gray-200 hover:bg-[#00FF87] cursor-pointer font-semibold text-sm text-[#1A1A1A] transition-colors"
+                          className="px-4 py-3 border-b border-gray-200 hover:bg-[#00FF87] font-semibold text-sm text-[#1A1A1A] transition-colors"
                         >
-                          <div className="font-black uppercase">{result.title}</div>
-                          <div className="text-xs text-gray-600 mt-1">{result.category} • ₹{result.originalPrice.toLocaleString()}</div>
-                          {!result.inStock && (
-                            <div className="text-xs font-black text-red-600 mt-1">OUT OF STOCK</div>
-                          )}
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="flex-1">
+                              <div className="font-black uppercase">{result.title}</div>
+                              <div className="text-xs text-gray-600 mt-1">{result.category} • ₹{result.originalPrice.toLocaleString()}</div>
+                              {!result.inStock && (
+                                <div className="text-xs font-black text-red-600 mt-1">OUT OF STOCK</div>
+                              )}
+                            </div>
+                            <div className="flex gap-1 items-center">
+                              <button
+                                onClick={() => handleAddToCart(result)}
+                                disabled={!result.inStock}
+                                className={`px-2 py-1 bg-white border border-black font-black text-xs uppercase hover:bg-[#00FF87] transition-all ${
+                                  !result.inStock ? 'cursor-not-allowed opacity-50' : ''
+                                }`}
+                              >
+                                ADD
+                              </button>
+                              <button
+                                onClick={() => handleBuyNow(result)}
+                                disabled={!result.inStock}
+                                className={`px-2 py-1 bg-[#1A4454] text-[#00FF87] border border-black font-black text-xs uppercase hover:bg-[#0f2a34] transition-all ${
+                                  !result.inStock ? 'cursor-not-allowed opacity-50' : ''
+                                }`}
+                              >
+                                BUY
+                              </button>
+                            </div>
+                          </div>
                         </li>
                       ))}
                     </ul>

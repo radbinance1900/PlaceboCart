@@ -7,8 +7,8 @@ export default function MarqueeBanner() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setScrollPosition((prev) => (prev + 2) % 100)
-    }, 20)
+      setScrollPosition((prev) => (prev + 0.5) % 100)
+    }, 50)
     return () => clearInterval(interval)
   }, [])
 
