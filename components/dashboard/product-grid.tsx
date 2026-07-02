@@ -2,6 +2,8 @@
 
 import { ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useCart } from '@/lib/cart-context'
 
 const products = [
   {
@@ -72,15 +74,27 @@ const products = [
 
 export default function ProductGrid() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
-  const [cart, setCart] = useState<number[]>([])
+  const { addToCart } = useCart()
+  const router = useRouter()
 
-  const handleAddToCart = (productId: number) => {
-    setCart([...cart, productId])
+  const handleAddToCart = (product: (typeof products)[0]) => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      originalPrice: product.originalPrice,
+      image: product.image,
+    })
   }
 
-  const handleBuyNow = (productId: number) => {
-    console.log('Redirecting to checkout for product:', productId)
-    // In a real app, this would redirect to checkout
+  const handleBuyNow = (product: (typeof products)[0]) => {
+    // Add to cart and redirect to checkout
+    addToCart({
+      id: product.id,
+      title: product.title,
+      originalPrice: product.originalPrice,
+      image: product.image,
+    })
+    router.push('/checkout')
   }
 
   return (
@@ -123,14 +137,14 @@ export default function ProductGrid() {
               {/* Buttons */}
               <div className="flex gap-2 mt-4 pt-4 border-t-2 border-black">
                 <button
-                  onClick={() => handleAddToCart(product.id)}
+                  onClick={() => handleAddToCart(product)}
                   className="flex-1 py-2 px-2 bg-white border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1"
                 >
                   <ShoppingCart className="w-3 h-3" />
                   Add
                 </button>
                 <button
-                  onClick={() => handleBuyNow(product.id)}
+                  onClick={() => handleBuyNow(product)}
                   className="flex-1 py-2 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
                 >
                   Buy

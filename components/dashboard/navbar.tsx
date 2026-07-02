@@ -2,9 +2,11 @@
 
 import { Search, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
+import Link from 'next/link'
+import { useCart } from '@/lib/cart-context'
 
 export default function DashboardNavbar() {
-  const [cartCount] = useState(0)
+  const { cartCount } = useCart()
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
@@ -33,17 +35,19 @@ export default function DashboardNavbar() {
           </div>
 
           {/* Cart Button */}
-          <button className="relative min-w-fit px-5 py-3 bg-[#00FF87] border-3 border-black font-black uppercase text-[#1A1A1A] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
-            <div className="flex items-center gap-2">
-              <ShoppingCart className="w-5 h-5" />
-              <span>Cart</span>
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#1A4454] text-[#00FF87] font-black rounded-full w-6 h-6 flex items-center justify-center text-xs">
-                  {cartCount}
-                </span>
-              )}
-            </div>
-          </button>
+          <Link href="/cart" className="relative min-w-fit">
+            <button className="relative min-w-fit px-5 py-3 bg-[#00FF87] border-3 border-black font-black uppercase text-[#1A1A1A] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">
+              <div className="flex items-center gap-2">
+                <ShoppingCart className="w-5 h-5" />
+                <span>Cart</span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-[#1A4454] text-[#00FF87] font-black rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                    {cartCount}
+                  </span>
+                )}
+              </div>
+            </button>
+          </Link>
         </div>
       </div>
     </nav>
