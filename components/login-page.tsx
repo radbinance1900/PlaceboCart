@@ -3,20 +3,20 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Eye, EyeOff } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-    setSuccess(false)
 
     // Validation
     if (!username.trim()) {
@@ -37,14 +37,10 @@ export default function LoginPage() {
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
-      setSuccess(true)
-      setUsername('')
-      setEmail('')
-      setRememberMe(false)
       console.log('[v0] Login successful with:', { username, email, rememberMe })
-
-      // Reset success message after 3 seconds
-      setTimeout(() => setSuccess(false), 3000)
+      
+      // Redirect to dashboard
+      router.push('/dashboard')
     }, 1500)
   }
 
@@ -115,12 +111,7 @@ export default function LoginPage() {
                 </div>
               )}
 
-              {/* Success message */}
-              {success && (
-                <div className="glass-sm bg-emerald-500/20 border-emerald-500/50 p-3 rounded-lg text-emerald-200 text-sm">
-                  ✓ Login successful! Welcome to ShopCart
-                </div>
-              )}
+
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">

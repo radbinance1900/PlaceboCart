@@ -10,8 +10,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'ShopCart - Login',
-  description: 'Fulfill your shopping cravings with ShopCart',
+  title: 'PlaceboCart - Premium E-commerce',
+  description: 'Fulfill your shopping cravings with PlaceboCart',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
+  colorScheme: 'light',
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+    { media: '(prefers-color-scheme: light)', color: '#FDFBF7' },
   ],
 }
 
@@ -45,8 +45,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark ${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-slate-950 font-sans antialiased">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="bg-[#FDFBF7] font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
