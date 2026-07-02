@@ -77,17 +77,17 @@ export default function CartPage() {
                     </div>
 
                     {/* Quantity Control */}
-                    <div className="flex items-center gap-2 border-2 border-black p-1">
+                    <div className="flex items-center gap-2 bg-white border-3 border-black p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="px-2 py-1 font-black text-xs hover:bg-gray-200 transition-colors"
+                        onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                        className="px-3 py-1 font-black text-lg text-[#1A4454] hover:bg-[#00FF87] transition-colors border border-black"
                       >
                         −
                       </button>
-                      <span className="px-3 font-black text-sm min-w-8 text-center">{item.quantity}</span>
+                      <span className="px-4 font-black text-lg min-w-12 text-center text-[#1A4454]">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="px-2 py-1 font-black text-xs hover:bg-gray-200 transition-colors"
+                        className="px-3 py-1 font-black text-lg text-[#1A4454] hover:bg-[#00FF87] transition-colors border border-black"
                       >
                         +
                       </button>
@@ -153,7 +153,7 @@ export default function CartPage() {
                   onClick={handleCheckout}
                   className="w-full py-4 bg-[#1A4454] border-3 border-black text-[#00FF87] font-black uppercase text-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
                 >
-                  Administer Dose
+                  Proceed to Checkout
                 </button>
 
                 {/* Info */}

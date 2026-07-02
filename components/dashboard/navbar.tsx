@@ -5,9 +5,33 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/cart-context'
 
+const products = [
+  { id: 1, title: 'iPhone 16 Pro Max' },
+  { id: 2, title: 'Rolex Submariner' },
+  { id: 3, title: 'Air Jordan 1 Retro' },
+  { id: 4, title: 'PlayStation 5 Pro' },
+  { id: 5, title: 'MacBook Pro 16"' },
+  { id: 6, title: 'AirPods Pro Max' },
+  { id: 7, title: 'Canon R5 Camera' },
+  { id: 8, title: 'DJI Air 3S Drone' },
+]
+
 export default function DashboardNavbar() {
   const { cartCount } = useCart()
   const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<typeof products | null>(null)
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query)
+    if (query.trim() === '') {
+      setSearchResults(null)
+      return
+    }
+    const results = products.filter(p =>
+      p.title.toLowerCase().includes(query.toLowerCase())
+    )
+    setSearchResults(results.length > 0 ? results : [])
+  }
 
   return (
     <nav className="sticky top-0 z-50 bg-[#FDFBF7] border-b-4 border-black shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
@@ -26,11 +50,33 @@ export default function DashboardNavbar() {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value)}
                 placeholder="Search viral products, brands, and instant dopamine fixes..."
                 className="w-full px-4 py-3 border-2 border-black bg-white text-[#1A1A1A] placeholder-gray-500 font-semibold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
               />
               <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+
+              {/* Search Results Dropdown */}
+              {searchResults !== null && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-50">
+                  {searchResults.length > 0 ? (
+                    <ul className="max-h-48 overflow-y-auto">
+                      {searchResults.map((result) => (
+                        <li
+                          key={result.id}
+                          className="px-4 py-2 border-b border-gray-200 hover:bg-gray-100 cursor-pointer font-semibold text-sm text-[#1A1A1A]"
+                        >
+                          {result.title}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="px-4 py-3 text-center text-gray-500 font-semibold text-sm">
+                      No products found for "{searchQuery}"
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

@@ -272,7 +272,7 @@ export default function CheckoutPage() {
                 onClick={handleCheckout}
                 className="w-full py-4 bg-[#1A4454] border-3 border-black text-[#00FF87] font-black uppercase text-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
               >
-                Administer Dose
+                Place Order
               </button>
 
               <p className="text-xs text-gray-600 font-semibold mt-4 text-center">
