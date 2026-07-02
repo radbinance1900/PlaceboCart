@@ -4,73 +4,36 @@ import { ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/lib/cart-context'
+import { products } from '@/lib/products'
 
-const products = [
-  {
-    id: 1,
-    title: 'iPhone 16 Pro Max',
-    category: 'Luxury Tech',
-    image: '📱',
-    originalPrice: 149900,
-    finalPrice: 0,
-  },
-  {
-    id: 2,
-    title: 'Rolex Submariner',
-    category: 'Luxury Watches',
-    image: '⌚',
-    originalPrice: 899999,
-    finalPrice: 0,
-  },
-  {
-    id: 3,
-    title: 'Air Jordan 1 Retro',
-    category: 'Premium Sneakers',
-    image: '👟',
-    originalPrice: 24999,
-    finalPrice: 0,
-  },
-  {
-    id: 4,
-    title: 'PlayStation 5 Pro',
-    category: 'Gaming Consoles',
-    image: '🎮',
-    originalPrice: 79999,
-    finalPrice: 0,
-  },
-  {
-    id: 5,
-    title: 'MacBook Pro 16"',
-    category: 'Premium Laptops',
-    image: '💻',
-    originalPrice: 299999,
-    finalPrice: 0,
-  },
-  {
-    id: 6,
-    title: 'AirPods Pro Max',
-    category: 'Audio',
-    image: '🎧',
-    originalPrice: 59900,
-    finalPrice: 0,
-  },
-  {
-    id: 7,
-    title: 'Canon R5 Camera',
-    category: 'Professional Gear',
-    image: '📷',
-    originalPrice: 449999,
-    finalPrice: 0,
-  },
-  {
-    id: 8,
-    title: 'DJI Air 3S Drone',
-    category: 'Tech Gadgets',
-    image: '🚁',
-    originalPrice: 149999,
-    finalPrice: 0,
-  },
-]
+// Product emoji mapping for easy updates later
+const productEmojis: { [key: string]: string } = {
+  'iPhone 16 Pro Max': '📱',
+  'MacBook Pro M4': '💻',
+  'AirPods Pro Max': '🎧',
+  'iPad Pro 12.9"': '📱',
+  'Apple Watch Ultra': '⌚',
+  'PlayStation 5': '🎮',
+  'DJI Air 3S Drone': '🚁',
+  'Meta Quest 3': '🥽',
+  'Nintendo Switch Pro': '🎮',
+  'Sony WH-1000XM5': '🎧',
+  'Rolex Submariner': '⌚',
+  'Omega Speedmaster': '⌚',
+  'Gucci GG Marmont Bag': '👜',
+  'Louis Vuitton Monogram': '👜',
+  'Hermès Silk Scarf': '🧣',
+  'Balenciaga Track Sneakers': '👟',
+  'Yeezy 350 Boost': '👟',
+  'Prada Nylon Backpack': '🎒',
+  'Off-White Virgil Hoodie': '👕',
+  'Supreme Box Logo Tee': '👕',
+  'Air Jordan 1 Retro High': '👟',
+  'Nike Air Max 90': '👟',
+  'Adidas Yeezy Foam Runner': '👟',
+  'New Balance 990v6': '👟',
+  'Puma RS-X Reinvention': '👟',
+}
 
 export default function ProductGrid() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
@@ -78,40 +41,50 @@ export default function ProductGrid() {
   const router = useRouter()
 
   const handleAddToCart = (product: (typeof products)[0]) => {
+    if (!product.inStock) return
     addToCart({
       id: product.id,
       title: product.title,
       originalPrice: product.originalPrice,
-      image: product.image,
+      image: productEmojis[product.title] || '📦',
     })
   }
 
   const handleBuyNow = (product: (typeof products)[0]) => {
-    // Add to cart and redirect to checkout
+    if (!product.inStock) return
     addToCart({
       id: product.id,
       title: product.title,
       originalPrice: product.originalPrice,
-      image: product.image,
+      image: productEmojis[product.title] || '📦',
     })
     router.push('/checkout')
   }
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
-      <h2 className="text-4xl font-black uppercase text-[#1A4454] mb-8">Curated Collection</h2>
+      <h2 className="text-4xl font-black uppercase text-[#1A4454] mb-8">Featured Products</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {products.slice(0, 8).map((product) => (
           <div
             key={product.id}
             onMouseEnter={() => setHoveredId(product.id)}
             onMouseLeave={() => setHoveredId(null)}
-            className="bg-white border-3 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 flex flex-col"
+            className={`bg-white border-3 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 flex flex-col ${
+              !product.inStock ? 'opacity-60' : ''
+            }`}
           >
             {/* Product Image */}
-            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 border-b-3 border-black flex items-center justify-center text-6xl">
-              {product.image}
+            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 border-b-3 border-black flex items-center justify-center text-6xl relative">
+              {productEmojis[product.title] || '📦'}
+              {!product.inStock && (
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <span className="bg-[#1A4454] text-[#00FF87] font-black px-3 py-2 text-xs border-2 border-black">
+                    NOT AVAILABLE
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Product Details */}
@@ -129,23 +102,29 @@ export default function ProductGrid() {
                     ₹{product.originalPrice.toLocaleString()}
                   </span>
                   <span className="bg-[#00FF87] border-2 border-black px-2 py-1 font-black text-xs">
-                    ₹{product.finalPrice} FREE
+                    ₹0 FREE
                   </span>
                 </div>
               </div>
 
               {/* Buttons */}
-              <div className="flex gap-2 mt-4 pt-4 border-t-2 border-black">
+              <div className="flex gap-2 mt-4 pt-4 border-t-2 border-black w-full">
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className="flex-1 py-2 px-2 bg-white border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1"
+                  disabled={!product.inStock}
+                  className={`flex-1 py-3 px-2 bg-white border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1 whitespace-nowrap ${
+                    !product.inStock ? 'cursor-not-allowed opacity-50' : ''
+                  }`}
                 >
-                  <ShoppingCart className="w-3 h-3" />
-                  Add
+                  <ShoppingCart className="w-3 h-3 flex-shrink-0" />
+                  <span>Add</span>
                 </button>
                 <button
                   onClick={() => handleBuyNow(product)}
-                  className="flex-1 py-2 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
+                  disabled={!product.inStock}
+                  className={`flex-1 py-3 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap ${
+                    !product.inStock ? 'cursor-not-allowed opacity-50' : ''
+                  }`}
                 >
                   Buy
                 </button>

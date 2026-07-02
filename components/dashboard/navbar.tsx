@@ -4,33 +4,30 @@ import { Search, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/cart-context'
-
-const products = [
-  { id: 1, title: 'iPhone 16 Pro Max' },
-  { id: 2, title: 'Rolex Submariner' },
-  { id: 3, title: 'Air Jordan 1 Retro' },
-  { id: 4, title: 'PlayStation 5 Pro' },
-  { id: 5, title: 'MacBook Pro 16"' },
-  { id: 6, title: 'AirPods Pro Max' },
-  { id: 7, title: 'Canon R5 Camera' },
-  { id: 8, title: 'DJI Air 3S Drone' },
-]
+import { searchProducts } from '@/lib/products'
 
 export default function DashboardNavbar() {
   const { cartCount } = useCart()
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<typeof products | null>(null)
+  const [searchResults, setSearchResults] = useState<any[] | null>(null)
+  const [showNoResults, setShowNoResults] = useState(false)
 
   const handleSearch = (query: string) => {
     setSearchQuery(query)
     if (query.trim() === '') {
       setSearchResults(null)
+      setShowNoResults(false)
       return
     }
-    const results = products.filter(p =>
-      p.title.toLowerCase().includes(query.toLowerCase())
-    )
+    const results = searchProducts(query)
     setSearchResults(results.length > 0 ? results : [])
+    setShowNoResults(results.length === 0)
+  }
+
+  const handleResultClick = (product: any) => {
+    setSearchQuery('')
+    setSearchResults(null)
+    setShowNoResults(false)
   }
 
   return (
@@ -57,22 +54,28 @@ export default function DashboardNavbar() {
               <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
 
               {/* Search Results Dropdown */}
-              {searchResults !== null && (
+              {(searchResults !== null || showNoResults) && (
                 <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-50">
-                  {searchResults.length > 0 ? (
-                    <ul className="max-h-48 overflow-y-auto">
+                  {searchResults && searchResults.length > 0 ? (
+                    <ul className="max-h-64 overflow-y-auto">
                       {searchResults.map((result) => (
                         <li
                           key={result.id}
-                          className="px-4 py-2 border-b border-gray-200 hover:bg-gray-100 cursor-pointer font-semibold text-sm text-[#1A1A1A]"
+                          onClick={() => handleResultClick(result)}
+                          className="px-4 py-3 border-b border-gray-200 hover:bg-[#00FF87] cursor-pointer font-semibold text-sm text-[#1A1A1A] transition-colors"
                         >
-                          {result.title}
+                          <div className="font-black uppercase">{result.title}</div>
+                          <div className="text-xs text-gray-600 mt-1">{result.category} • ₹{result.originalPrice.toLocaleString()}</div>
+                          {!result.inStock && (
+                            <div className="text-xs font-black text-red-600 mt-1">OUT OF STOCK</div>
+                          )}
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <div className="px-4 py-3 text-center text-gray-500 font-semibold text-sm">
-                      No products found for "{searchQuery}"
+                    <div className="px-4 py-4 text-center">
+                      <div className="text-gray-500 font-semibold text-sm">No products found</div>
+                      <div className="text-xs text-gray-400 mt-1">Try searching for "iPhone", "Jordan", "Rolex", etc.</div>
                     </div>
                   )}
                 </div>
