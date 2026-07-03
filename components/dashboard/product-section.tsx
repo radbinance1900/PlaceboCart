@@ -4,6 +4,7 @@ import { ShoppingCart, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/lib/cart-context'
+import Image from 'next/image'
 
 interface Product {
   id: number
@@ -44,6 +45,11 @@ export default function ProductSection({ title, products, icon }: ProductSection
     router.push('/checkout')
   }
 
+  // Helper to check if the image field is likely a path/url or just a fallback emoji
+  const isImageFile = (imgString: string) => {
+    return imgString && imgString.length > 4;
+  }
+
   return (
     <div className="bg-white border-3 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
       {/* Header */}
@@ -71,9 +77,19 @@ export default function ProductSection({ title, products, icon }: ProductSection
                 onMouseLeave={() => setHoveredId(null)}
                 className="bg-[#FDFBF7] border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-4 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
               >
-                {/* Image */}
-                <div className="bg-white border-2 border-black p-4 mb-3 flex items-center justify-center min-h-32">
-                  <div className="text-6xl">{product.image}</div>
+                {/* Image Container */}
+                <div className="bg-white border-2 border-black p-4 mb-3 flex items-center justify-center min-h-32 relative overflow-hidden">
+                  {isImageFile(product.image) ? (
+                    <Image 
+                      src={product.image} 
+                      alt={product.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover p-2"
+                    />
+                  ) : (
+                    <div className="text-6xl">{product.image || '📦'}</div>
+                  )}
                 </div>
 
                 {/* Title */}
