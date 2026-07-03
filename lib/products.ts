@@ -25,6 +25,7 @@ export const products: Product[] = [
   {
     id: 2,
     title: 'MacBook Pro M4',
+    image: "/images/products/macbook-pro-m4.webp",
     originalPrice: 169900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
@@ -34,6 +35,7 @@ export const products: Product[] = [
   {
     id: 3,
     title: 'AirPods Pro Max',
+    image: "/images/products/airpods-max.webp",
     originalPrice: 59900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
@@ -43,6 +45,7 @@ export const products: Product[] = [
   {
     id: 4,
     title: 'iPad Pro 12.9"',
+    image: "/images/products/ipad-pro-13-m4.webp",
     originalPrice: 129900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
@@ -52,6 +55,7 @@ export const products: Product[] = [
   {
     id: 5,
     title: 'Apple Watch Ultra',
+    image: "/images/products/apple-watch-ultra-2.webp",
     originalPrice: 89900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
@@ -63,6 +67,7 @@ export const products: Product[] = [
   {
     id: 6,
     title: 'PlayStation 5',
+    image: "/images/products/playstation-5.webp",
     originalPrice: 49990,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
@@ -72,6 +77,7 @@ export const products: Product[] = [
   {
     id: 7,
     title: 'DJI Air 3S Drone',
+    image: "/images/products/dji-air-3s.webp",
     originalPrice: 145000,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
@@ -81,6 +87,7 @@ export const products: Product[] = [
   {
     id: 8,
     title: 'Meta Quest 3',
+    image: "/images/products/meta-quest-3.webp",
     originalPrice: 59999,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
@@ -90,6 +97,7 @@ export const products: Product[] = [
   {
     id: 9,
     title: 'Nintendo Switch Pro',
+    image: "/images/products/nintendo-switch-oled.webp",
     originalPrice: 34990,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
@@ -99,6 +107,7 @@ export const products: Product[] = [
   {
     id: 10,
     title: 'Sony WH-1000XM5',
+    image: "/images/products/sony-wh-1000xm5.webp",
     originalPrice: 34990,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
@@ -110,6 +119,7 @@ export const products: Product[] = [
   {
     id: 11,
     title: 'Rolex Submariner',
+    image: "/images/products/rolex-submariner.webp",
     originalPrice: 1051000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
@@ -119,6 +129,7 @@ export const products: Product[] = [
   {
     id: 12,
     title: 'Omega Speedmaster',
+    image: "/images/products/omega-speedmaster.webp",
     originalPrice: 866900,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
@@ -128,6 +139,7 @@ export const products: Product[] = [
   {
     id: 13,
     title: 'Gucci GG Marmont Bag',
+    image: "/images/products/gucci-gg-marmont-bag.webp",
     originalPrice: 200000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
@@ -137,6 +149,7 @@ export const products: Product[] = [
   {
     id: 14,
     title: 'Louis Vuitton Monogram',
+    image: "/images/products/louis-vuitton-monogram.webp",
     originalPrice: 185000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
@@ -146,6 +159,7 @@ export const products: Product[] = [
   {
     id: 15,
     title: 'Hermès Silk Scarf',
+    image: "/images/products/hermes-silk-scarf.webp",
     originalPrice: 45000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
@@ -157,6 +171,7 @@ export const products: Product[] = [
   {
     id: 16,
     title: 'Balenciaga Track Sneakers',
+    image: "/images/products/balenciaga-track-sneakers.webp",
     originalPrice: 75000,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
@@ -166,6 +181,7 @@ export const products: Product[] = [
   {
     id: 17,
     title: 'Yeezy 350 Boost',
+    image: "/images/products/yeezy-boost-350-v2.webp",
     originalPrice: 22999,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
@@ -175,6 +191,7 @@ export const products: Product[] = [
   {
     id: 18,
     title: 'Prada Nylon Backpack',
+    image: "/images/products/prada-nylon-backpack.webp",
     originalPrice: 364990,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
@@ -184,6 +201,7 @@ export const products: Product[] = [
   {
     id: 19,
     title: 'Off-White Virgil Hoodie',
+    image: "/images/products/off-white-hoodie.webp",
     originalPrice: 74000,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
@@ -193,6 +211,7 @@ export const products: Product[] = [
   {
     id: 20,
     title: 'Supreme Box Logo Tee',
+    image: "/images/products/supreme-box-logo-tee.webp",
     originalPrice: 29000,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
@@ -204,6 +223,7 @@ export const products: Product[] = [
   {
     id: 21,
     title: 'Air Jordan 1 Retro High',
+    image: "/images/products/air-jordan-1-retro-high.webp",
     originalPrice: 16995,
     category: 'Sneakers',
     categorySlug: 'sneakers',
@@ -213,6 +233,7 @@ export const products: Product[] = [
   {
     id: 22,
     title: 'Nike Air Max 90',
+    image: "/images/products/nike-air-max-90.webp",
     originalPrice: 11895,
     category: 'Sneakers',
     categorySlug: 'sneakers',
@@ -222,6 +243,7 @@ export const products: Product[] = [
   {
     id: 23,
     title: 'Adidas Yeezy Foam Runner',
+    image: "/images/products/adidas-yeezy-foam-runner.webp",
     originalPrice: 7999,
     category: 'Sneakers',
     categorySlug: 'sneakers',
@@ -231,6 +253,7 @@ export const products: Product[] = [
   {
     id: 24,
     title: 'New Balance 990v6',
+    image: "/images/products/new-balance-990v6.webp",
     originalPrice: 19999,
     category: 'Sneakers',
     categorySlug: 'sneakers',
@@ -240,6 +263,7 @@ export const products: Product[] = [
   {
     id: 25,
     title: 'Puma RS-X Reinvention',
+    image: "/images/products/puma-rs-x-reinvention.webp",
     originalPrice: 9999,
     category: 'Sneakers',
     categorySlug: 'sneakers',
