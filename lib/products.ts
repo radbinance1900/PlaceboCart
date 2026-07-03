@@ -15,6 +15,7 @@ export const products: Product[] = [
   {
     id: 1,
     title: 'iPhone 16 Pro Max',
+    image: "/images/products/iphone-16-pro-max.webp",
     originalPrice: 144900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
