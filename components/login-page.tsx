@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const router = useRouter()
+  const [showSplash, setShowSplash] = useState(true)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -45,7 +46,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+    <>
+      {/* Video Splash Screen */}
+      {showSplash && (
+        <div className="fixed inset-0 z-50 bg-[#1A4454] flex items-center justify-center overflow-hidden">
+          <video
+            src="/splash-reveal.mp4"
+            autoPlay
+            muted
+            playsInline
+            onEnded={() => setShowSplash(false)}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      {/* Main Login Content */}
+      <div className={`min-h-screen bg-slate-950 flex items-center justify-center p-4 transition-opacity duration-500 ${
+        showSplash ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      }`}>
       {/* Animated gradient background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -56,31 +75,33 @@ export default function LoginPage() {
       <div className="w-full max-w-6xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left side - Branding and Image */}
-          <div className="flex flex-col items-center lg:items-start justify-center space-y-8">
+          <div className="flex flex-col items-center lg:items-start justify-center space-y-4">
             {/* Logo */}
-            <div className="flex items-center gap-3 group">
-              <div className="w-16 h-16 rounded-full glass-sm flex items-center justify-center p-2 group-hover:neon-glow transition-all duration-300">
+            <div className="flex items-center gap-2 group">
+              <div className="w-12 h-12 rounded-full glass-sm flex items-center justify-center p-2 group-hover:neon-glow transition-all duration-300">
                 <Image
                   src="/cart-logo.png"
                   alt="ShopCart Logo"
-                  width={56}
-                  height={56}
+                  width={40}
+                  height={40}
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-3xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-500 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-500 bg-clip-text text-transparent">
                 ShopCart
               </span>
             </div>
 
             {/* Tagline */}
-            <div className="space-y-3 max-w-sm">
-              <h1 className="text-4xl lg:text-5xl font-bold text-slate-100 leading-tight text-balance">
-                Want to fulfil the{' '}
+            <div className="space-y-1 max-w-sm">
+              <h1 className="text-3xl font-bold text-slate-100 leading-snug text-balance">
+                Want to fulfil{' '}
                 <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                  cravings of shopping
-                </span>{' '}
-                without shopping
+                  cravings
+                </span>
+                {' '}of shopping
+                <br />
+                <span className="text-slate-100">without shopping</span>
               </h1>
             </div>
 
@@ -207,6 +228,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
