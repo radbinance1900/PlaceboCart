@@ -15,7 +15,7 @@ export const products: Product[] = [
   {
     id: 1,
     title: 'iPhone 16 Pro Max',
-    originalPrice: 1199,
+    originalPrice: 144900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
     description: 'Latest Apple flagship with advanced features',
@@ -24,7 +24,7 @@ export const products: Product[] = [
   {
     id: 2,
     title: 'MacBook Pro M4',
-    originalPrice: 1999,
+    originalPrice: 169900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
     description: 'Powerful laptop for professionals',
@@ -33,7 +33,7 @@ export const products: Product[] = [
   {
     id: 3,
     title: 'AirPods Pro Max',
-    originalPrice: 549,
+    originalPrice: 59900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
     description: 'Premium spatial audio headphones',
@@ -42,7 +42,7 @@ export const products: Product[] = [
   {
     id: 4,
     title: 'iPad Pro 12.9"',
-    originalPrice: 1099,
+    originalPrice: 129900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
     description: 'Powerful tablet with M4 chip',
@@ -51,7 +51,7 @@ export const products: Product[] = [
   {
     id: 5,
     title: 'Apple Watch Ultra',
-    originalPrice: 799,
+    originalPrice: 89900,
     category: 'Trending Tech',
     categorySlug: 'trending-tech',
     description: 'Advanced sports and fitness tracker',
@@ -62,7 +62,7 @@ export const products: Product[] = [
   {
     id: 6,
     title: 'PlayStation 5',
-    originalPrice: 499,
+    originalPrice: 49990,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
     description: 'Next-gen gaming console',
@@ -71,7 +71,7 @@ export const products: Product[] = [
   {
     id: 7,
     title: 'DJI Air 3S Drone',
-    originalPrice: 999,
+    originalPrice: 145000,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
     description: '4K camera drone with long flight time',
@@ -80,7 +80,7 @@ export const products: Product[] = [
   {
     id: 8,
     title: 'Meta Quest 3',
-    originalPrice: 499,
+    originalPrice: 59999,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
     description: 'Advanced VR headset',
@@ -89,7 +89,7 @@ export const products: Product[] = [
   {
     id: 9,
     title: 'Nintendo Switch Pro',
-    originalPrice: 349,
+    originalPrice: 34990,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
     description: 'Enhanced gaming console',
@@ -98,7 +98,7 @@ export const products: Product[] = [
   {
     id: 10,
     title: 'Sony WH-1000XM5',
-    originalPrice: 399,
+    originalPrice: 34990,
     category: 'Viral Hype',
     categorySlug: 'viral-hype',
     description: 'Premium noise-canceling headphones',
@@ -109,7 +109,7 @@ export const products: Product[] = [
   {
     id: 11,
     title: 'Rolex Submariner',
-    originalPrice: 9100,
+    originalPrice: 1051000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
     description: 'Iconic luxury sports watch',
@@ -118,7 +118,7 @@ export const products: Product[] = [
   {
     id: 12,
     title: 'Omega Speedmaster',
-    originalPrice: 6500,
+    originalPrice: 866900,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
     description: 'Professional chronograph watch',
@@ -127,7 +127,7 @@ export const products: Product[] = [
   {
     id: 13,
     title: 'Gucci GG Marmont Bag',
-    originalPrice: 2290,
+    originalPrice: 200000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
     description: 'Iconic luxury handbag',
@@ -136,7 +136,7 @@ export const products: Product[] = [
   {
     id: 14,
     title: 'Louis Vuitton Monogram',
-    originalPrice: 1860,
+    originalPrice: 185000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
     description: 'Classic luxury travel bag',
@@ -145,7 +145,7 @@ export const products: Product[] = [
   {
     id: 15,
     title: 'Hermès Silk Scarf',
-    originalPrice: 485,
+    originalPrice: 45000,
     category: 'Luxury Drips',
     categorySlug: 'luxury-drips',
     description: 'Premium handcrafted silk accessory',
@@ -156,7 +156,7 @@ export const products: Product[] = [
   {
     id: 16,
     title: 'Balenciaga Track Sneakers',
-    originalPrice: 695,
+    originalPrice: 75000,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
     description: 'Fashion-forward chunky sneakers',
@@ -165,7 +165,7 @@ export const products: Product[] = [
   {
     id: 17,
     title: 'Yeezy 350 Boost',
-    originalPrice: 220,
+    originalPrice: 22999,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
     description: 'Iconic Kanye West design',
@@ -174,7 +174,7 @@ export const products: Product[] = [
   {
     id: 18,
     title: 'Prada Nylon Backpack',
-    originalPrice: 2200,
+    originalPrice: 364990,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
     description: 'Premium designer backpack',
@@ -183,7 +183,7 @@ export const products: Product[] = [
   {
     id: 19,
     title: 'Off-White Virgil Hoodie',
-    originalPrice: 890,
+    originalPrice: 74000,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
     description: 'Luxury streetwear piece',
@@ -192,7 +192,7 @@ export const products: Product[] = [
   {
     id: 20,
     title: 'Supreme Box Logo Tee',
-    originalPrice: 348,
+    originalPrice: 29000,
     category: 'Infinite Flex',
     categorySlug: 'infinite-flex',
     description: 'Iconic streetwear essential',
@@ -203,7 +203,7 @@ export const products: Product[] = [
   {
     id: 21,
     title: 'Air Jordan 1 Retro High',
-    originalPrice: 170,
+    originalPrice: 16995,
     category: 'Sneakers',
     categorySlug: 'sneakers',
     description: 'Classic Michael Jordan shoe',
@@ -212,7 +212,7 @@ export const products: Product[] = [
   {
     id: 22,
     title: 'Nike Air Max 90',
-    originalPrice: 130,
+    originalPrice: 11895,
     category: 'Sneakers',
     categorySlug: 'sneakers',
     description: 'Timeless running shoe',
@@ -221,7 +221,7 @@ export const products: Product[] = [
   {
     id: 23,
     title: 'Adidas Yeezy Foam Runner',
-    originalPrice: 280,
+    originalPrice: 7999,
     category: 'Sneakers',
     categorySlug: 'sneakers',
     description: 'Innovative foam design',
@@ -230,7 +230,7 @@ export const products: Product[] = [
   {
     id: 24,
     title: 'New Balance 990v6',
-    originalPrice: 185,
+    originalPrice: 19999,
     category: 'Sneakers',
     categorySlug: 'sneakers',
     description: 'Premium American-made sneaker',
@@ -239,7 +239,7 @@ export const products: Product[] = [
   {
     id: 25,
     title: 'Puma RS-X Reinvention',
-    originalPrice: 120,
+    originalPrice: 9999,
     category: 'Sneakers',
     categorySlug: 'sneakers',
     description: 'Retro-inspired modern sneaker',
