@@ -122,8 +122,9 @@ export default function ProductGrid() {
                 <button
                   onClick={() => handleBuyNow(product)}
                   disabled={!product.inStock}
-                  className={`flex-1 py-2 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] ${
-                    !product.inStock ? 'cursor-not-allowed opacity-50' : ''
+                  className={`flex-1 py-2 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1 ${
+  !product.inStock ? 'cursor-not-allowed opacity-50' : ''
+}`}
                   }`}
                 >
                   Buy
