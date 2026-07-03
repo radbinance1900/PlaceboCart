@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const router = useRouter()
+  const [showSplash, setShowSplash] = useState(true)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -45,7 +46,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+    <>
+      {/* Video Splash Screen */}
+      {showSplash && (
+        <div className="fixed inset-0 z-50 bg-[#1A4454] flex items-center justify-center overflow-hidden">
+          <video
+            src="/splash-reveal.mp4"
+            autoPlay
+            muted
+            playsInline
+            onEnded={() => setShowSplash(false)}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      {/* Main Login Content */}
+      <div className={`min-h-screen bg-slate-950 flex items-center justify-center p-4 transition-opacity duration-500 ${
+        showSplash ? 'opacity-0 pointer-events-none' : 'opacity-100'
+      }`}>
       {/* Animated gradient background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -209,6 +228,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
