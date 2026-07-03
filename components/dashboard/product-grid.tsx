@@ -3,6 +3,7 @@
 import { ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { useCart } from '@/lib/cart-context'
 import { products } from '@/lib/products'
 
@@ -46,7 +47,7 @@ export default function ProductGrid() {
       id: product.id,
       title: product.title,
       originalPrice: product.originalPrice,
-      image: productEmojis[product.title] || '📦',
+      image: product.image || productEmojis[product.title] || '📦',
     })
   }
 
@@ -56,7 +57,7 @@ export default function ProductGrid() {
       id: product.id,
       title: product.title,
       originalPrice: product.originalPrice,
-      image: productEmojis[product.title] || '📦',
+      image: product.image || productEmojis[product.title] || '📦',
     })
     router.push('/checkout')
   }
@@ -75,11 +76,22 @@ export default function ProductGrid() {
               !product.inStock ? 'opacity-60' : ''
             }`}
           >
-            {/* Product Image */}
-            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 border-b-3 border-black flex items-center justify-center text-6xl relative">
-              {productEmojis[product.title] || '📦'}
+            {/* Product Image Container */}
+            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 border-b-3 border-black flex items-center justify-center text-6xl relative overflow-hidden">
+              {product.image ? (
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                  className="object-cover"
+                />
+              ) : (
+                productEmojis[product.title] || '📦'
+              )}
+              
               {!product.inStock && (
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-10">
                   <span className="bg-[#1A4454] text-[#00FF87] font-black px-3 py-2 text-xs border-2 border-black">
                     NOT AVAILABLE
                   </span>
@@ -109,23 +121,22 @@ export default function ProductGrid() {
 
               {/* Buttons */}
               <div className="flex gap-2 mt-4 pt-4 border-t-2 border-black">
-               <button
-  onClick={() => handleAddToCart(product)}
-  disabled={!product.inStock}
-  className={`flex-1 py-2 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1 ${
-    !product.inStock ? 'cursor-not-allowed opacity-50' : ''
-  }`}
->
-  <ShoppingCart className="w-3 h-3 text-[#00FF87]" />
-  Add
-</button>
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  disabled={!product.inStock}
+                  className={`flex-1 py-2 px-2 bg-white border-2 border-black font-black text-xs uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1 ${
+                    !product.inStock ? 'cursor-not-allowed opacity-50' : ''
+                  }`}
+                >
+                  <ShoppingCart className="w-3 h-3" />
+                  Add
+                </button>
                 <button
                   onClick={() => handleBuyNow(product)}
                   disabled={!product.inStock}
-                  className={`flex-1 py-2 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-1 ${
-  !product.inStock ? 'cursor-not-allowed opacity-50' : ''
-}`}
-                  
+                  className={`flex-1 py-2 px-2 bg-[#1A4454] border-2 border-black font-black text-xs uppercase text-[#00FF87] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] ${
+                    !product.inStock ? 'cursor-not-allowed opacity-50' : ''
+                  }`}
                 >
                   Buy
                 </button>
