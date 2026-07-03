@@ -47,7 +47,7 @@ export default function ProductGrid() {
       id: product.id,
       title: product.title,
       originalPrice: product.originalPrice,
-      image: product.image || productEmojis[product.title] || '📦',
+      image: productEmojis[product.title] || '📦',
     })
   }
 
@@ -57,7 +57,7 @@ export default function ProductGrid() {
       id: product.id,
       title: product.title,
       originalPrice: product.originalPrice,
-      image: product.image || productEmojis[product.title] || '📦',
+      image: productEmojis[product.title] || '📦',
     })
     router.push('/checkout')
   }
