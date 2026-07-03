@@ -88,7 +88,7 @@ export default function LoginPage() {
                 />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-500 bg-clip-text text-transparent">
-                ShopCart
+                PlaceboCart
               </span>
             </div>
 
