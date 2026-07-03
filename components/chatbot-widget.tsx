@@ -127,8 +127,7 @@ export default function ChatbotWidget() {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type your message..."
-              className="flex-1 px-3 py-2 bg-white border-2 border-black font-sans text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-[#1A4454]"
-              disabled={isLoading}
+className="flex-1 px-3 py-2 bg-white text-black border-2 border-black font-sans text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-[#1A4454]"              disabled={isLoading}
             />
             <button
               onClick={handleSendMessage}
